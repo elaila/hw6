@@ -2,14 +2,36 @@ import re
 import unittest
 
 def sumNums(fileName):
-    pass
+    list_num = []
+    open_file = open(fileName, 'r')
+    readlines = open_file.readlines()
+    sum = 0
+    for line in readlines:
+        list_num += re.findall(r'[0-9]+', line)
+    for num in list_num:
+        sum += int(num)
+    open_file.close()
+    return(sum)
 
 def countWord(fileName, word):
-    pass
+    open_f = open(fileName, 'r')
+    readlines = open_f.readlines()
+    set_count = 0
+    for line in readlines:
+        l = line.lower()
+        set_word = re.findall(r'\b'+ word + r'\b', l)
+        set_count += len(set_word)
+    open_f.close()
+    return set_count
 
 def listURLs(fileName):
-    pass
-
+    open_file = open(fileName, 'r')
+    readlines = open_file.readlines()
+    urls = []
+    for line in readlines:
+        urls += re.findall(r'w+\.\S+\.\S+', line)
+    open_file.close()
+    return urls
 
 class TestHW6(unittest.TestCase):
     """ Class to test this homework """
